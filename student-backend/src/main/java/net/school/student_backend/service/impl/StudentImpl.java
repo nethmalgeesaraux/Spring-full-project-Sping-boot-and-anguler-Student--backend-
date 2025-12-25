@@ -20,4 +20,14 @@ public class StudentImpl implements StudentService {
         Student savedStudent = studentRepository.save(student);
         return StudentMapper.mapToStudentDto(savedStudent);
     }
+
+    @Override
+    public StudentDto getStudentById(Long studentId) {
+        Student student = studentRepository.findById(studentId)
+                .orElseThrow(() -> new RuntimeException("Student not found with id: " + studentId));
+        return StudentMapper.mapToStudentDto(student);
+
+    }
+
+
 }
